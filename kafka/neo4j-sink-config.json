@@ -1,0 +1,26 @@
+{
+  "name": "Neo4jSinkConnector",
+  "config": {
+    "connector.class": "streams.kafka.connect.sink.Neo4jSinkConnector",
+    "tasks.max": "1",
+    "topics": "neo4j-topic",
+    
+    "errors.retry.timeout": "-1",
+    "errors.retry.delay.max.ms": "1000",
+    "errors.tolerance": "all",
+    "errors.log.enable": true,
+    "errors.log.include.messages": true,
+    
+    "neo4j.server.uri": "bolt://localhost:7687",
+    "neo4j.authentication.basic.username": "neo4j",
+    "neo4j.authentication.basic.password": "neo4j123",
+    "neo4j.encryption.enabled": false,
+    "neo4j.topic.cypher.neo4j-topic": "MERGE (p:Person {id: event.id}) SET p.name = event.name",
+
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false"
+  }
+}
+
