@@ -13,13 +13,7 @@ Debezium Postgres Connector: 2.7.4
 Neo4j Sink Connector: 4.1.2
 
 #### Architecture:
-+-------------+      +-----------+      +---------+      +----------------------+      +--------+
-| PostgreSQL  | ---> | Debezium  | ---> |  Kafka  | ---> | Neo4j Sink Connector | ---> | Neo4j  |
-|  (DB)       |      | Connector |      | Cluster |      |      (Kafka)         |      | (Graph)|
-+-------------+      +-----------+      +---------+      +----------------------+      +--------+
-        |                   |
-        |   WAL / CDC       |
-        +-------------------+
+![Architecture Diagram](architecture.png)
 
 #### Instructions:
 1. Configure PostgreSQL
@@ -72,9 +66,7 @@ For this example, public.test_table in the postgres database is used.
 ```bash
 bin/connect-distributed.sh config/connect-distributed.properties
 ```
-4. In the Kafka folder, you’ll find neo4j-sink-config.json and debezium-postgres.json. These files define the connector configurations in REST API format to set up both the Debezium and Neo4j Sink connectors. You may need to edit them to match your environment.
-
-Setting up the correct message format from Debezium so that Neo4j can process it took considerable effort. Be careful: even if messages successfully appear in the Kafka topic, the Neo4j Sink connector will not process them if the JSON format is incorrect.
+4. In the Kafka folder, you’ll find neo4j-sink-config.json and debezium-postgres.json. These files define the connector configurations in REST API format to set up both the Debezium and Neo4j Sink connectors. You may need to edit them to match your environment. Setting up the correct message format from Debezium so that Neo4j can process it took considerable effort. Be careful: even if messages successfully appear in the Kafka topic, the Neo4j Sink connector will not process them if the JSON format is incorrect.
 
 Add the connectors to Kafka, edit your own path, this can only be executed when connect-distributed.sh is running:
 ```bash
@@ -82,7 +74,8 @@ Add the connectors to Kafka, edit your own path, this can only be executed when 
 curl -X POST http://localhost:8083/connectors \
   -H "Content-Type: application/json" \
   -d @/home/bigdata/kafka/neo4j-sink-config.json 
-
+```
+```bash
 # postgres
 curl -X POST http://localhost:8083/connectors \
   -H "Content-Type: application/json" \
@@ -125,8 +118,6 @@ In neo4j-sink-config.json (Neo4j Sink Connector), the connector reads the routed
 ```
 
 7. Proceed to testing once everything has been set up.
-- Run INSERT in postgres serevr:
+- Run INSERT in postgres server and check in neo4j:
 ![Pg](postgres.png)
-
-- Check in Neo4j:
 ![Neo4j](neo4j.png)
