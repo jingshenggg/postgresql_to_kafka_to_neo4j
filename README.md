@@ -4,13 +4,13 @@
 Hello! If you’re looking to stream real-time updates (change data capture) from a PostgreSQL table to a Neo4j database using Kafka, you’re in the right place. While this can be done with a Python script and SQL triggers, Kafka provides a more stable and scalable solution for large datasets. This guide explains the process step by step. This setup is intended for development purposes, so both PostgreSQL and Neo4j run on localhost. You can modify the configuration to suit your needs.
 
 #### Version and Environment:
-Server: NAME="Rocky Linux", VERSION="8.10 (Green Obsidian)"
-PostgreSQL version: 15 (localhost)
-Neo4j version: neo4j-community-4.4.46
-Neo4j plugins: neo4j-streams-4.1.9.jar
-Kafka version: 3.9.0
-Debezium Postgres Connector: 2.7.4
-Neo4j Sink Connector: 4.1.2
+- Server: NAME="Rocky Linux", VERSION="8.10 (Green Obsidian)"
+- PostgreSQL version: 15 (localhost)
+- Neo4j version: neo4j-community-4.4.46
+- Neo4j plugins: neo4j-streams-4.1.9.jar
+- Kafka version: 3.9.0
+- Debezium Postgres Connector: 2.7.4
+- Neo4j Sink Connector: 4.1.2
 
 #### Architecture:
 ![Architecture Diagram](architecture.png)
