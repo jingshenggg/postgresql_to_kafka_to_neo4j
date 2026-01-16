@@ -101,12 +101,12 @@ In debezium-postgres.json (Debezium Source Connector), the connector captures re
 "transforms.route.replacement": "neo4j-topic"
 ```
 Key points:
--Unwrapping messages
--ExtractNewRecordState extracts only the row data (ignoring Debezium metadata).
--Tombstone messages are dropped, and delete events are ignored, preventing unnecessary deletions in Neo4j.
+- Unwrapping messages
+- ExtractNewRecordState extracts only the row data (ignoring Debezium metadata).
+- Tombstone messages are dropped, and delete events are ignored, preventing unnecessary deletions in Neo4j.
 
 Topic routing:
--RegexRouter renames the original PostgreSQL topic (pgserver1.public.test_table) to a Neo4j-friendly topic (neo4j-topic).This ensures the Neo4j Sink Connector consumes from a predictable topic.
+- RegexRouter renames the original PostgreSQL topic (pgserver1.public.test_table) to a Neo4j-friendly topic (neo4j-topic).This ensures the Neo4j Sink Connector consumes from a predictable topic.
 
 In neo4j-sink-config.json (Neo4j Sink Connector), the connector reads the routed topic (neo4j-topic) and writes changes into Neo4j:
 ```bash
