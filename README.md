@@ -66,7 +66,7 @@ For this example, public.test_table in the postgres database is used.
 ```bash
 bin/connect-distributed.sh config/connect-distributed.properties
 ```
-4. In the Kafka folder, you’ll find neo4j-sink-config.json and debezium-postgres.json. These files define the connector configurations in REST API format to set up both the Debezium and Neo4j Sink connectors. You may need to edit them to match your environment. Setting up the correct message format from Debezium so that Neo4j can process it took considerable effort. Be careful: even if messages successfully appear in the Kafka topic, the Neo4j Sink connector will not process them if the JSON format is incorrect.
+4. (The most important) In the Kafka folder, you’ll find neo4j-sink-config.json and debezium-postgres.json. These files define the connector configurations in REST API format to set up both the Debezium and Neo4j Sink connectors. You may need to edit them to match your environment and configurations like host and password. Setting up the correct message format from Debezium so that Neo4j can process it took considerable effort. Be careful: even if messages successfully appear in the Kafka topic, the Neo4j Sink connector will not process them if the JSON format is incorrect.
 
 Add the connectors to Kafka, edit your own path, this can only be executed when connect-distributed.sh is running:
 ```bash
@@ -117,7 +117,7 @@ In neo4j-sink-config.json (Neo4j Sink Connector), the connector reads the routed
 "neo4j.authentication.basic.password": "neo4j123",
 ```
 
-7. Proceed to testing once everything has been set up.
-- Run INSERT in postgres server and check in neo4j:
+7. Proceed to testing once everything has been set up. If you are stuck, I strongly suggest you to set up kafka -> neo4j first and use producer.sh to do testing by sending json data into the topic to test. Once this step is good, you can proceed to set up postgresql -> kafka.
+- Run INSERT in postgres server and check in neo4j for final testing:
 ![Pg](postgres.png)
 ![Neo4j](neo4j.png)
