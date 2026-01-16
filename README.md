@@ -1,7 +1,7 @@
 # PostgreSQL -> Kafka -> Neo4j
 
 ### Introduction
-Hello! If you’re looking to stream real-time updates from a PostgreSQL table to a Neo4j database using Kafka, you’re in the right place. While this can be done with a Python script and SQL triggers, Kafka provides a more stable and scalable solution for large datasets. This guide explains the process step by step. This setup is intended for development purposes, so both PostgreSQL and Neo4j run on localhost. You can modify the configuration to suit your needs.
+Hello! If you’re looking to stream real-time updates (change data capture) from a PostgreSQL table to a Neo4j database using Kafka, you’re in the right place. While this can be done with a Python script and SQL triggers, Kafka provides a more stable and scalable solution for large datasets. This guide explains the process step by step. This setup is intended for development purposes, so both PostgreSQL and Neo4j run on localhost. You can modify the configuration to suit your needs.
 
 #### Version and Environment:
 Server: NAME="Rocky Linux", VERSION="8.10 (Green Obsidian)"
